@@ -1,0 +1,21 @@
+name: tambola_caller
+description: Tambola / Housie number caller app. Cross-platform (Android & iOS).
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  shared_preferences: ^2.2.2   # Save game state locally (simple key-value store)
+  flutter_tts: ^4.2.0          # Text-to-speech for announcing numbers
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
