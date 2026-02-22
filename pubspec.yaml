@@ -10,7 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
   shared_preferences: ^2.2.2   # Save game state locally (simple key-value store)
-  flutter_tts: ^4.2.0          # Text-to-speech for announcing numbers
+  flutter_tts: ^4.0.2          # Text-to-speech (4.0.x works with Dart 3.2 / Flutter 3.16)
 
 dev_dependencies:
   flutter_test:

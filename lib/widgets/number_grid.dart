@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 /// Shows numbers 1–90 in a grid. Called numbers are highlighted with a lively game-board style.
+/// Fits available width and scrolls vertically so nothing is cropped on small screens.
 class NumberGrid extends StatelessWidget {
   final Set<int> calledNumbers;
   final bool isDark;
@@ -28,7 +29,7 @@ class NumberGrid extends StatelessWidget {
     final uncalledBorder = isDark ? Colors.grey.shade700 : Colors.grey.shade400;
 
     return Container(
-      padding: const EdgeInsets.all(12),
+      padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topLeft,
@@ -56,74 +57,89 @@ class NumberGrid extends StatelessWidget {
           ),
         ],
       ),
-      child: GridView.builder(
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 10,
-          childAspectRatio: 0.95,
-          crossAxisSpacing: 8,
-          mainAxisSpacing: 8,
-        ),
-        itemCount: 90,
-        itemBuilder: (context, index) {
-          final n = index + 1;
-          final called = calledNumbers.contains(n);
-          return AnimatedContainer(
-            duration: const Duration(milliseconds: 200),
-            curve: Curves.easeOut,
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: called
-                    ? [calledGradientStart, calledGradientEnd]
-                    : [uncalledGradientStart, uncalledGradientEnd],
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          // Fit 10 columns in available width; use smaller spacing on narrow screens
+          final availableWidth = constraints.maxWidth - 0; // padding already in container
+          const crossAxisCount = 10;
+          const spacing = 6.0;
+          final cellWidth = (availableWidth - (crossAxisCount - 1) * spacing) / crossAxisCount;
+          final cellHeight = cellWidth / 0.95;
+          final fontSize = (cellWidth * 0.55).clamp(14.0, 22.0);
+
+          return SizedBox(
+            height: 9 * cellHeight + 8 * spacing,
+            child: GridView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: crossAxisCount,
+                childAspectRatio: 0.95,
+                crossAxisSpacing: spacing,
+                mainAxisSpacing: spacing,
               ),
-              borderRadius: BorderRadius.circular(12),
-              border: Border.all(
-                color: called
-                    ? (isDark ? Colors.green.shade400 : Colors.green.shade300)
-                    : uncalledBorder.withOpacity(0.6),
-                width: called ? 1.5 : 1,
-              ),
-              boxShadow: [
-                if (called) ...[
-                  BoxShadow(
-                    color: calledGradientStart.withOpacity(0.5),
-                    blurRadius: 8,
-                    offset: const Offset(0, 3),
-                  ),
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.2),
-                    blurRadius: 2,
-                    offset: const Offset(0, 1),
-                  ),
-                ] else
-                  BoxShadow(
-                    color: Colors.black.withOpacity(isDark ? 0.25 : 0.1),
-                    blurRadius: 2,
-                    offset: const Offset(0, 2),
-                  ),
-              ],
-            ),
-            child: Text(
-              '$n',
-              style: TextStyle(
-                color: called ? calledText : uncalledText,
-                fontWeight: called ? FontWeight.bold : FontWeight.w600,
-                fontSize: 22,
-                shadows: called
-                    ? [
-                        Shadow(
-                          color: Colors.black.withOpacity(0.3),
-                          offset: const Offset(0, 1),
-                          blurRadius: 1,
+              itemCount: 90,
+              itemBuilder: (context, index) {
+                final n = index + 1;
+                final called = calledNumbers.contains(n);
+                return AnimatedContainer(
+                  duration: const Duration(milliseconds: 200),
+                  curve: Curves.easeOut,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: called
+                          ? [calledGradientStart, calledGradientEnd]
+                          : [uncalledGradientStart, uncalledGradientEnd],
+                    ),
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                      color: called
+                          ? (isDark ? Colors.green.shade400 : Colors.green.shade300)
+                          : uncalledBorder.withOpacity(0.6),
+                      width: called ? 1.5 : 1,
+                    ),
+                    boxShadow: [
+                      if (called) ...[
+                        BoxShadow(
+                          color: calledGradientStart.withOpacity(0.5),
+                          blurRadius: 8,
+                          offset: const Offset(0, 3),
                         ),
-                      ]
-                    : null,
-              ),
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.2),
+                          blurRadius: 2,
+                          offset: const Offset(0, 1),
+                        ),
+                      ] else
+                        BoxShadow(
+                          color: Colors.black.withOpacity(isDark ? 0.25 : 0.1),
+                          blurRadius: 2,
+                          offset: const Offset(0, 2),
+                        ),
+                    ],
+                  ),
+                  child: Text(
+                    '$n',
+                    style: TextStyle(
+                      color: called ? calledText : uncalledText,
+                      fontWeight: called ? FontWeight.bold : FontWeight.w600,
+                      fontSize: fontSize,
+                      shadows: called
+                          ? [
+                              Shadow(
+                                color: Colors.black.withOpacity(0.3),
+                                offset: const Offset(0, 1),
+                                blurRadius: 1,
+                              ),
+                            ]
+                          : null,
+                    ),
+                  ),
+                );
+              },
             ),
           );
         },

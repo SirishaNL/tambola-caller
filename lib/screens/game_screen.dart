@@ -214,7 +214,7 @@ class _GameScreenState extends State<GameScreen> with SingleTickerProviderStateM
 
     return PopScope(
       canPop: false,
-      onPopInvokedWithResult: (didPop, result) async {
+      onPopInvoked: (bool didPop) async {
         if (didPop) return;
         await _onWillPop();
       },
@@ -471,7 +471,7 @@ class _GameScreenState extends State<GameScreen> with SingleTickerProviderStateM
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
       decoration: BoxDecoration(
-        color: theme.colorScheme.surfaceContainerHighest.withOpacity(0.4),
+        color: theme.colorScheme.surfaceVariant.withOpacity(0.4),
         borderRadius: BorderRadius.circular(10),
         border: Border.all(color: theme.colorScheme.outline.withOpacity(0.2)),
       ),
@@ -483,8 +483,6 @@ class _GameScreenState extends State<GameScreen> with SingleTickerProviderStateM
           Switch(
             value: !_state!.isManual,
             onChanged: (on) => on ? _switchToAuto() : _switchToManual(),
-            activeThumbColor: theme.colorScheme.onPrimary,
-            activeTrackColor: theme.colorScheme.primary,
           ),
           const SizedBox(width: 8),
           // Speed: radio when Auto is on

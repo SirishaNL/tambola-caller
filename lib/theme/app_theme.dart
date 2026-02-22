@@ -212,7 +212,7 @@ ThemeData getTheme(String themeId, bool isDark) {
   return ThemeData(
     colorScheme: scheme,
     useMaterial3: true,
-    cardTheme: CardThemeData(
+    cardTheme: CardTheme(
       elevation: d.cardElevation + (isDark ? 2 : 0),
       shadowColor: isDark ? Colors.black45 : Colors.black26,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(d.cardRadius)),
@@ -237,7 +237,7 @@ ThemeData getTheme(String themeId, bool isDark) {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(d.buttonRadius)),
       ),
     ),
-    dialogTheme: DialogThemeData(
+    dialogTheme: DialogTheme(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(d.cardRadius)),
     ),
     inputDecorationTheme: InputDecorationTheme(
