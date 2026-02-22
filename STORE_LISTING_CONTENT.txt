@@ -1,0 +1,73 @@
+# Play Store – copy/paste and assets
+
+---
+
+## 1. SHORT DESCRIPTION (max 80 characters)
+
+Copy this exactly (80 chars):
+
+Call numbers for Tambola / Housie. Voice caller, number grid, auto or manual.
+
+---
+
+## 2. FULL DESCRIPTION (max 4000 characters)
+
+Copy everything below into "Full description":
+
+Tambola Caller (Housie) helps you run a game of Tambola with clear number calling and a simple, easy-to-use layout.
+
+• Call numbers 1–90 in random order with no repeats
+• Manual or automatic calling (3, 5, or 7 second intervals)
+• Voice announcement for each number
+• Number history and grid to track called numbers
+• Themes and dark mode
+• Progress saved so you can resume later
+
+Perfect for family gatherings, parties, and game nights. No account needed to play.
+
+---
+
+## 3. APP ICON (required)
+
+- **Size:** 512 x 512 pixels
+- **Format:** PNG (32-bit, no transparency for Play Store)
+- **Where to get one:**
+  - Use the iOS icon: open `ios/Runner/Assets.xcassets/AppIcon.appiconset/` and find `Icon-App-1024x1024@1x.png`. Resize it to 512x512 (e.g. in Preview: Tools → Adjust Size → 512 x 512) and upload that as the Play Store icon.
+  - Or create a simple 512x512 image (e.g. with “Tambola” or a number 90) and save as PNG.
+  - Or use a free generator: https://appicon.co (upload any image, download the 512x512 for Android/Play).
+
+---
+
+## 4. PHONE SCREENSHOTS (at least 2)
+
+- **Min:** 2 phone screenshots
+- **Size:** e.g. 1080 x 1920 px or 1080 x 2340 px (portrait). Play accepts various phone sizes; the simulator usually gives valid sizes.
+
+**How to create:**
+1. Run the app on the Android emulator or a real device:
+   ```bash
+   export PATH="$PATH:$HOME/flutter/bin"
+   cd /Users/nallalakshmisirisha/Desktop/tambola-caller
+   flutter run -d "sdk gphone64 x86 64"
+   ```
+2. Open the main screen (number grid) and the game/calling screen.
+3. Take screenshots:
+   - **Emulator:** click the camera icon in the emulator toolbar, or **Cmd+S** (Mac) / **Ctrl+S** (Windows).
+   - **Phone:** power + volume down (or your device’s screenshot shortcut).
+4. Upload the image files in Play Console under “Phone” screenshots (drag and drop or “Upload”).
+
+---
+
+## 5. OPTIONAL: Feature graphic
+
+- **Size:** 1024 x 500 px
+- Optional but recommended. Can be a simple banner with “Tambola Caller” and “Housie number caller”.
+
+---
+
+## Quick checklist
+
+- [ ] Short description pasted (80 chars)
+- [ ] Full description pasted
+- [ ] App icon 512x512 PNG uploaded
+- [ ] At least 2 phone screenshots uploaded
