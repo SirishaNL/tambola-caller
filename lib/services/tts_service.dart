@@ -10,7 +10,7 @@ class TtsService {
 
   final FlutterTts _tts = FlutterTts();
   bool _enabled = true;
-  double _speechRate = 0.5; // 0.0–1.0; middle is normal
+  double _speechRate = 0.25; // 0.0–1.0; default slower so numbers are easier to follow
   bool _iosAudioConfigured = false;
 
   bool get enabled => _enabled;

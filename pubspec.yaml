@@ -1,7 +1,7 @@
 name: tambola_caller
 description: Tambola / Housie number caller app. Cross-platform (Android & iOS).
 publish_to: 'none'
-version: 1.0.0+1
+version: 1.0.0+5
 
 environment:
   sdk: '>=3.0.0 <4.0.0'

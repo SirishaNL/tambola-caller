@@ -163,7 +163,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                   IconButton(
                     icon: Icon(Icons.cast_connected, color: theme.colorScheme.primary),
-                    onPressed: () => showCastDialog(context),
+                    onPressed: () => performCastAction(context),
                     tooltip: 'Cast to TV',
                   ),
                   IconButton(

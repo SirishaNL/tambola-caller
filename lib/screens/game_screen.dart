@@ -249,7 +249,7 @@ class _GameScreenState extends State<GameScreen> with SingleTickerProviderStateM
               icon: Icon(Icons.cast_connected, color: theme.colorScheme.primary),
               onPressed: () {
                 _pauseTemporarily();
-                showCastDialog(context).then((_) => _scheduleResumeAfterDelay());
+                performCastAction(context).then((_) => _scheduleResumeAfterDelay());
               },
               tooltip: 'Cast to TV',
             ),
